@@ -420,19 +420,23 @@
   };
   
   function showView(name){
-    Object.values(views).forEach(v => v.classList.add('hidden'));
+    Object.values(views).forEach(function(v) { v.classList.add('hidden'); });
     if (views[name]) views[name].classList.remove('hidden');
   }
 
   function esc(s){
-    return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    return String(s==null?'':s).replace(/[&<>"']/g, function(c) {
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
   }
 
   // ---- LOGOUT ----
-  document.getElementById('btn-logout').addEventListener('click', () => supabase.auth.signOut());
+  document.getElementById('btn-logout').addEventListener('click', function() {
+    supabase.auth.signOut();
+  });
 
   // ---- LOGIN ----
-  document.getElementById('login-form').addEventListener('submit', async (e) => {
+  document.getElementById('login-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = document.getElementById('login-btn');
     const msg = document.getElementById('login-msg');
@@ -488,11 +492,9 @@
     }
   }
 
-  // Iniciar verificación al cargar la página
   checkSession();
 
-  // Escuchar cambios (login/logout)
-  supabase.auth.onAuthStateChange((event, session) => {
+  supabase.auth.onAuthStateChange(function(event, session) {
     if (event === 'SIGNED_OUT') {
       showView('login');
       document.getElementById('user-info').style.display = 'none';
@@ -503,39 +505,50 @@
 
   // ---- BUSCADOR DE CLIENTES ----
   let searchTimeout;
-  document.getElementById('search-client').addEventListener('input', (e) => {
+  document.getElementById('search-client').addEventListener('input', function(e) {
     clearTimeout(searchTimeout);
     const q = e.target.value.trim();
     const list = document.getElementById('search-results');
     if (q.length < 2) { list.innerHTML = ''; return; }
-    searchTimeout = setTimeout(() => searchClients(q), 300);
+    searchTimeout = setTimeout(function() { searchClients(q); }, 300);
   });
 
   async function searchClients(q){
     const list = document.getElementById('search-results');
     list.innerHTML = '<li class="no-results">Buscando…</li>';
+    
+    // Usamos concatenación normal con + para evitar errores de sintaxis
+    const searchFilter = 'full_name.ilike.%' + q + '%,email.ilike.%' + q + '%,phone.ilike.%' + q + '%';
+    
     const { data, error } = await supabase
       .from('profiles')
       .select('id, full_name, email, phone')
-      .or(full_name.ilike.%${q}%,email.ilike.%${q}%,phone.ilike.%${q}%)
+      .or(searchFilter)
       .limit(10);
       
     if (error || !data || data.length === 0) {
       list.innerHTML = '<li class="no-results">Sin resultados</li>';
       return;
     }
-    list.innerHTML = data.map(c => `
-      <li data-id="${esc(c.id)}" data-name="${esc(c.full_name || '')}">
-        <div>
-          <div class="client-name">${esc(c.full_name) || 'Sin nombre'}</div>
-          <div class="client-meta">${esc(c.email || '')}${c.phone ? ' · ' + esc(c.phone) : ''}</div>
-        </div>
-        <button class="btn btn-sm" type="button">Seleccionar</button>
-      </li>
-    `).join('');
     
-    list.querySelectorAll('li[data-id]').forEach(li => {
-      li.addEventListener('click', () => selectClient({ id: li.dataset.id, name: li.dataset.name }));
+    let html = '';
+    data.forEach(function(c) {
+      let meta = esc(c.email || '');
+      if (c.phone) meta += ' · ' + esc(c.phone);
+      html += '<li data-id="' + esc(c.id) + '" data-name="' + esc(c.full_name || '') + '">' +
+                '<div>' +
+                  '<div class="client-name">' + (esc(c.full_name) || 'Sin nombre') + '</div>' +
+                  '<div class="client-meta">' + meta + '</div>' +
+                '</div>' +
+                '<button class="btn btn-sm" type="button">Seleccionar</button>' +
+              '</li>';
+    });
+    list.innerHTML = html;
+    
+    list.querySelectorAll('li[data-id]').forEach(function(li) {
+      li.addEventListener('click', function() { 
+        selectClient({ id: li.dataset.id, name: li.dataset.name }); 
+      });
     });
   }
 
@@ -549,7 +562,7 @@
     document.getElementById('visit-msg').textContent = '';
   }
 
-  document.getElementById('btn-clear-client').addEventListener('click', () => {
+  document.getElementById('btn-clear-client').addEventListener('click', function() {
     selectedClient = null;
     document.getElementById('selected-client').classList.remove('show');
     document.getElementById('visit-form-wrap').style.display = 'none';
@@ -557,14 +570,14 @@
   });
 
   // ---- REGISTRO DE VISITA ----
-  document.getElementById('service').addEventListener('change', (e) => {
+  document.getElementById('service').addEventListener('change', function(e) {
     const opt = e.target.selectedOptions[0];
     document.getElementById('price').value = opt.dataset.price || 0;
     const isOther = e.target.value === 'Otro';
     document.getElementById('service-custom-wrap').style.display = isOther ? 'block' : 'none';
   });
 
-  document.getElementById('btn-register-visit').addEventListener('click', async () => {
+  document.getElementById('btn-register-visit').addEventListener('click', async function() {
     if (!selectedClient || !currentUser) return;
     const btn = document.getElementById('btn-register-visit');
     const msg = document.getElementById('visit-msg');
@@ -612,17 +625,22 @@
       supabase.from('visits').select('id, service_name, price, visited_at, user_id').order('visited_at', { ascending:false }).limit(20)
     ]);
 
-    document.getElementById('stat-today').textContent = todayRes.count ?? 0;
-    document.getElementById('stat-week').textContent = weekRes.count ?? 0;
-    document.getElementById('stat-clients').textContent = clientsRes.count ?? 0;
+    document.getElementById('stat-today').textContent = todayRes.count || 0;
+    document.getElementById('stat-week').textContent = weekRes.count || 0;
+    document.getElementById('stat-clients').textContent = clientsRes.count || 0;
 
     const visits = visitsRes.data || [];
-    const userIds = [...new Set(visits.map(v => v.user_id))];
-    let profilesMap = {};
+    let userIds = [];
+    visits.forEach(function(v) {
+      if (userIds.indexOf(v.user_id) === -1) userIds.push(v.user_id);
+    });
     
+    let profilesMap = {};
     if (userIds.length) {
       const { data: profs } = await supabase.from('profiles').select('id, full_name').in('id', userIds);
-      (profs || []).forEach(p => { profilesMap[p.id] = p.full_name; });
+      if (profs) {
+        profs.forEach(function(p) { profilesMap[p.id] = p.full_name; });
+      }
     }
 
     const tbody = document.getElementById('recent-visits');
@@ -630,19 +648,21 @@
       tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--steel);">Aún no hay visitas registradas</td></tr>';
       return;
     }
-    tbody.innerHTML = visits.map(v => {
+    
+    let html = '';
+    visits.forEach(function(v) {
       const d = new Date(v.visited_at).toLocaleString('es-CO', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' });
       const price = new Intl.NumberFormat('es-CO', { style:'currency', currency:'COP', maximumFractionDigits:0 }).format(v.price || 0);
-      return `<tr>
-        <td>${esc(d)}</td>
-        <td>${esc(profilesMap[v.user_id] || 'Cliente')}</td>
-        <td>${esc(v.service_name)}</td>
-        <td>${esc(price)}</td>
-      </tr>`;
-    }).join('');
+      html += '<tr>' +
+                '<td>' + esc(d) + '</td>' +
+                '<td>' + esc(profilesMap[v.user_id] || 'Cliente') + '</td>' +
+                '<td>' + esc(v.service_name) + '</td>' +
+                '<td>' + esc(price) + '</td>' +
+              '</tr>';
+    });
+    tbody.innerHTML = html;
   }
 })();
 </script>
-
 </body>
 </html>
