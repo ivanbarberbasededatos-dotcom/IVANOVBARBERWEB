@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin · IVANOV BARBERSHOP</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1918;--ink-2:#26221F;--paper:#EAE3D6;--paper-2:#DDD3BC;
+    --red:#9E2B25;--red-dark:#7A211D;--brass:#BC8A46;--steel:#8A8579;--paper-dim:#C9BFA9;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Archivo',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.5;}
+  h1,h2,h3{font-family:'Yeseva One',serif;font-weight:400;margin:0;}
+  a{color:inherit;}
+  button{font-family:inherit;cursor:pointer;}
+  :focus-visible{outline:2px solid var(--brass);outline-offset:2px;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px;}
+  header{background:var(--ink);color:var(--paper);padding:14px 0;border-bottom:1px solid rgba(234,227,214,.12);position:sticky;top:0;z-index:10;}
+  header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  .logo{font-family:'Yeseva One',serif;font-size:18px;color:var(--paper);text-decoration:none;}
+  .logo span{display:inline-block;border-bottom:3px solid var(--red);padding-bottom:1px;}
+  .user-info{display:none;align-items:center;gap:12px;}
+  .user-tag{font-size:12px;color:var(--paper-dim);max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .logout{background:transparent;border:1px solid rgba(234,227,214,.3);color:var(--paper);padding:7px 14px;font-size:12px;border-radius:3px;font-weight:600;}
+  .logout:hover{border-color:var(--red);color:var(--red);}
+
+  .view{padding:40px 0;min-height:calc(100vh - 58px);}
+  .hidden{display:none !important;}
+
+  .panel{background:#fff;border:1px solid rgba(27,25,24,.12);padding:28px;border-radius:3px;margin-bottom:20px;}
+  .panel h2{font-size:22px;margin-bottom:18px;}
+  .panel h3{font-family:'Archivo';font-size:12px;text-transform:uppercase;letter-spacing:0.8px;color:var(--steel);margin:20px 0 12px;font-weight:700;}
+  .panel h3:first-of-type{margin-top:0;}
+
+  label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px;}
+  label:first-of-type{margin-top:0;}
+  input,select,textarea{width:100%;padding:11px 13px;border:1px solid rgba(27,25,24,.2);border-radius:3px;font-size:15px;font-family:inherit;background:#fff;}
+  input:focus,select:focus,textarea:focus{border-color:var(--brass);outline:none;}
+  textarea{resize:vertical;min-height:60px;}
+
+  .btn{background:var(--ink);color:var(--paper);border:none;padding:12px 20px;font-size:14px;font-weight:600;border-radius:3px;}
+  .btn:hover:not(:disabled){background:var(--red);}
+  .btn:disabled{opacity:.6;cursor:wait;}
+  .btn-block{width:100%;margin-top:20px;}
+  .btn-sm{padding:6px 12px;font-size:12px;}
+
+  .search-results{list-style:none;padding:0;margin:12px 0 0;}
+  .search-results li{background:var(--paper);padding:12px 14px;border:1px solid rgba(27,25,24,.1);border-radius:3px;margin-bottom:6px;cursor:pointer;font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;transition:background .15s;}
+  .search-results li[data-id]:hover{background:var(--paper-2);}
+  .search-results li.no-results{cursor:default;color:var(--steel);}
+  .client-name{font-weight:600;}
+  .client-meta{font-size:12px;color:var(--steel);margin-top:2px;}
+
+  .selected-client{padding:14px;background:rgba(188,138,70,.15);border-left:3px solid var(--brass);margin-top:14px;border-radius:3px;font-size:14px;display:none;justify-content:space-between;align-items:center;gap:10px;}
+  .selected-client.show{display:flex;}
+  .selected-client .lbl{font-size:11px;color:var(--steel);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;}
+
+  .msg{margin-top:14px;font-size:14px;color:var(--red-dark);min-height:1.2em;}
+  .msg.ok{color:#2a7a3a;}
+
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  th{text-align:left;padding:10px 8px;border-bottom:2px solid var(--ink);font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--steel);font-weight:700;}
+  td{padding:12px 8px;border-bottom:1px solid rgba(27,25,24,.08);}
+  tr:hover td{background:rgba(234,227,214,.3);}
+
+  .access-msg{text-align:center;padding:60px 20px;}
+  .access-msg h2{font-size:24px;margin-bottom:12px;}
+  .access-msg p{color:var(--steel);margin-bottom:24px;}
+  .access-msg a{color:var(--red-dark);text-decoration:none;font-weight:600;}
+
+  .stats-mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px;}
+  .stat-mini{background:#fff;padding:18px;border:1px solid rgba(27,25,24,.12);border-radius:3px;text-align:center;}
+  .stat-mini .num{font-family:'Yeseva One',serif;font-size:30px;color:var(--red);line-height:1;}
+  .stat-mini .lbl{font-size:12px;color:var(--steel);margin-top:6px;}
+
+  .loading{text-align:center;padding:60px 20px;color:var(--steel);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="/" class="logo"><span>IVANOV</span> · Admin</a>
+    <div class="user-info" id="user-info">
+      <span class="user-tag" id="user-tag"></span>
+      <button class="logout" id="btn-logout">Salir</button>
+    </div>
+  </div>
+</header>
+
+<!-- LOADING -->
+<div class="view" id="view-loading">
+  <div class="wrap"><div class="loading">Cargando…</div></div>
+</div>
+
+<!-- LOGIN -->
+<div class="view hidden" id="view-login">
+  <div class="wrap" style="max-width:420px;">
+    <div class="panel">
+      <h2>Acceso staff</h2>
+      <form id="login-form">
+        <label for="email">Correo</label>
+        <input id="email" type="email" autocomplete="email" required>
+        <label for="password">Contraseña</label>
+        <input id="password" type="password" autocomplete="current-password" required>
+        <button type="submit" class="btn btn-block" id="login-btn">Entrar</button>
+        <p class="msg" id="login-msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+    <p style="font-size:13px;color:var(--steel);text-align:center;"><a href="/" style="color:var(--red-dark);">← Volver al sitio</a></p>
+  </div>
+</div>
+
+<!-- DENIED -->
+<div class="view hidden" id="view-denied">
+  <div class="wrap">
+    <div class="panel access-msg">
+      <h2>Acceso restringido</h2>
+      <p>Tu cuenta no tiene permisos de staff (employee o admin).</p>
+      <a href="/">← Volver al sitio</a>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="view hidden" id="view-dashboard">
+  <div class="wrap">
+
+    <div class="stats-mini">
+      <div class="stat-mini"><div class="num" id="stat-today">—</div><div class="lbl">Cortes hoy</div></div>
+      <div class="stat-mini"><div class="num" id="stat-week">—</div><div class="lbl">Cortes (7 días)</div></div>
+      <div class="stat-mini"><div class="num" id="stat-clients">—</div><div class="lbl">Clientes registrados</div></div>
+    </div>
+
+    <div class="panel">
+      <h2>Registrar visita</h2>
+
+      <h3>1. Buscar cliente</h3>
+      <input type="search" id="search-client" placeholder="Nombre, email o WhatsApp…" autocomplete="off">
+      <ul class="search-results" id="search-results"></ul>
+      <div class="selected-client" id="selected-client">
+        <div>
+          <div class="lbl">Cliente seleccionado</div>
+          <strong id="selected-name"></strong>
+        </div>
+        <button class="btn btn-sm" id="btn-clear-client" style="background:transparent;color:var(--red-dark);border:1px solid var(--red);">Cambiar</button>
+      </div>
+
+      <div id="visit-form-wrap" style="display:none;">
+        <h3>2. Datos del servicio</h3>
+        <label for="service">Servicio</label>
+        <select id="service">
+          <option value="Corte clásico" data-price="35000">Corte clásico — $35.000</option>
+          <option value="Corte + barba" data-price="50000">Corte + barba — $50.000</option>
+          <option value="Diseño de barba" data-price="25000">Diseño de barba — $25.000</option>
+          <option value="Afeitada tradicional" data-price="30000">Afeitada tradicional — $30.000</option>
+          <option value="Otro" data-price="0">Otro (escribir abajo)</option>
+        </select>
+        <div id="service-custom-wrap" style="display:none;">
+          <label for="service-custom">Nombre del servicio</label>
+          <input id="service-custom" type="text" placeholder="Ej: Corte niños">
+        </div>
+        <label for="price">Precio (COP)</label>
+        <input id="price" type="number" min="0" value="35000">
+        <label for="notes">Notas (opcional)</label>
+        <textarea id="notes" placeholder="Ej: cliente nuevo, pidió diseño específico…"></textarea>
+        <button class="btn btn-block" id="btn-register-visit">Registrar visita</button>
+        <p class="msg" id="visit-msg" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Últimas visitas</h2>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead><tr><th>Fecha</th><th>Cliente</th><th>Servicio</th><th>Precio</th></tr></thead>
+          <tbody id="recent-visits">
+            <tr><td colspan="4" style="text-align:center;color:var(--steel);">Cargando…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+  const SUPABASE_URL = 'https://cqptwzrivcehefpgmtyu.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_JaIED6uJ7UriEa35ftzarw_XX8qx5dN';
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  let currentUser = null;
+  let selectedClient = null;
+
+  const views = {
+    loading:   document.getElementById('view-loading'),
+    login:     document.getElementById('view-login'),
+    denied:    document.getElementById('view-denied'),
+    dashboard: document.getElementById('view-dashboard')
+  };
+  function showView(name){
+    Object.values(views).forEach(v => v.classList.add('hidden'));
+    views[name].classList.remove('hidden');
+  }
+
+  function esc(s){
+    return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // ---- LOGIN ----
+  document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('login-btn');
+    const msg = document.getElementById('login-msg');
+    msg.textContent = ''; msg.classList.remove('ok');
+    btn.disabled = true; btn.textContent = 'Entrando…';
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: document.getElementById('email').value.trim(),
+        password: document.getElementById('password').value
+      });
+      if (error) throw error;
+    } catch (err) {
+      msg.textContent = err.message || 'Error al entrar';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Entrar';
+    }
+  });
+
+  // ---- LOGOUT ----
+  document.getElementById('btn-logout').addEventListener('click', () => supabase.auth.signOut());
+
+  // ---- AUTH STATE ----
+  supabase.auth.onAuthStateChange(async (_event, session) => {
+    if (!session) {
+      currentUser = null;
+      document.getElementById('user-info').style.display = 'none';
+      showView('login');
+      return;
+    }
+    currentUser = session.user;
+    document.getElementById('user-info').style.display = 'flex';
+    document.getElementById('user-tag').textContent = session.user.email || '';
+
+    const { data: profile, error } = await supabase
+      .from('profiles')
+      .select('role, full_name')
+      .eq('id', session.user.id)
+      .maybeSingle();
+
+    if (error || !profile || (profile.role !== 'admin' && profile.role !== 'employee')) {
+      showView('denied');
+      return;
+    }
+    showView('dashboard');
+    loadDashboard();
+  });
+
+  // ---- SEARCH ----
+  let searchTimeout;
+  document.getElementById('search-client').addEventListener('input', (e) => {
+    clearTimeout(searchTimeout);
+    const q = e.target.value.trim();
+    const list = document.getElementById('search-results');
+    if (q.length < 2) { list.innerHTML = ''; return; }
+    searchTimeout = setTimeout(() => searchClients(q), 300);
+  });
+
+  async function searchClients(q){
+    const list = document.getElementById('search-results');
+    list.innerHTML = '<li class="no-results">Buscando…</li>';
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('id, full_name, email, phone')
+      .or(full_name.ilike.%${q}%,email.ilike.%${q}%,phone.ilike.%${q}%)
+      .limit(10);
+    if (error || !data || data.length === 0) {
+      list.innerHTML = '<li class="no-results">Sin resultados</li>';
+      return;
+    }
+    list.innerHTML = data.map(c => `
+      <li data-id="${esc(c.id)}" data-name="${esc(c.full_name || '')}">
+        <div>
+          <div class="client-name">${esc(c.full_name) || 'Sin nombre'}</div>
+          <div class="client-meta">${esc(c.email || '')}${c.phone ? ' · ' + esc(c.phone) : ''}</div>
+        </div>
+        <button class="btn btn-sm" type="button">Seleccionar</button>
+      </li>
+    `).join('');
+    list.querySelectorAll('li[data-id]').forEach(li => {
+      li.addEventListener('click', () => selectClient({ id: li.dataset.id, name: li.dataset.name }));
+    });
+  }
+
+  function selectClient(client){
+    selectedClient = client;
+    document.getElementById('selected-name').textContent = client.name || '(sin nombre)';
+    document.getElementById('selected-client').classList.add('show');
+    document.getElementById('visit-form-wrap').style.display = 'block';
+    document.getElementById('search-results').innerHTML = '';
+    document.getElementById('search-client').value = '';
+    document.getElementById('visit-msg').textContent = '';
+  }
+
+  document.getElementById('btn-clear-client').addEventListener('click', () => {
+    selectedClient = null;
+    document.getElementById('selected-client').classList.remove('show');
+    document.getElementById('visit-form-wrap').style.display = 'none';
+    document.getElementById('visit-msg').textContent = '';
+  });
+
+  // ---- SERVICE ----
+  document.getElementById('service').addEventListener('change', (e) => {
+    const opt = e.target.selectedOptions[0];
+    document.getElementById('price').value = opt.dataset.price || 0;
+    const isOther = e.target.value === 'Otro';
+    document.getElementById('service-custom-wrap').style.display = isOther ? 'block' : 'none';
+  });
+
+  // ---- REGISTER VISIT ----
+  document.getElementById('btn-register-visit').addEventListener('click', async () => {
+    if (!selectedClient || !currentUser) return;
+    const btn = document.getElementById('btn-register-visit');
+    const msg = document.getElementById('visit-msg');
+    msg.textContent = ''; msg.classList.remove('ok');
+
+    let service = document.getElementById('service').value;
+    if (service === 'Otro') service = document.getElementById('service-custom').value.trim();
+    const price = parseFloat(document.getElementById('price').value) || 0;
+    const notes = document.getElementById('notes').value.trim();
+    if (!service) { msg.textContent = 'Especifica el servicio'; return; }
+
+    btn.disabled = true; btn.textContent = 'Guardando…';
+    try {
+      const { error } = await supabase.from('visits').insert({
+        user_id: selectedClient.id,
+        service_name: service,
+        price: price,
+        notes: notes || null,
+        registered_by: currentUser.id
+      });
+      if (error) throw error;
+      msg.textContent = '✓ Visita registrada';
+      msg.classList.add('ok');
+      document.getElementById('notes').value = '';
+      document.getElementById('service-custom').value = '';
+      loadDashboard();
+    } catch (err) {
+      msg.textContent = err.message || 'Error al registrar';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Registrar visita';
+    }
+  });
+
+  // ---- LOAD DASHBOARD ----
+  async function loadDashboard(){
+    const now = new Date();
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString();
+    const weekStart = new Date(now.getTime() - 7*24*60*60*1000).toISOString();
+
+    const [todayRes, weekRes, clientsRes, visitsRes] = await Promise.all([
+      supabase.from('visits').select('id', { count:'exact', head:true }).gte('visited_at', todayStart),
+      supabase.from('visits').select('id', { count:'exact', head:true }).gte('visited_at', weekStart),
+      supabase.from('profiles').select('id', { count:'exact', head:true }),
+      supabase.from('visits').select('id, service_name, price, visited_at, user_id').order('visited_at', { ascending:false }).limit(20)
+    ]);
+
+    document.getElementById('stat-today').textContent = todayRes.count ?? 0;
+    document.getElementById('stat-week').textContent = weekRes.count ?? 0;
+    document.getElementById('stat-clients').textContent = clientsRes.count ?? 0;
+
+    const visits = visitsRes.data || [];
+    const userIds = [...new Set(visits.map(v => v.user_id))];
+    let profilesMap = {};
+    if (userIds.length) {
+      const { data: profs } = await supabase.from('profiles').select('id, full_name').in('id', userIds);
+      (profs || []).forEach(p => { profilesMap[p.id] = p.full_name; });
+    }
+
+    const tbody = document.getElementById('recent-visits');
+    if (!visits.length) {
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--steel);">Aún no hay visitas</td></tr>';
+      return;
+    }
+    tbody.innerHTML = visits.map(v => {
+      const d = new Date(v.visited_at).toLocaleString('es-CO', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' });
+      const price = new Intl.NumberFormat('es-CO', { style:'currency', currency:'COP', maximumFractionDigits:0 }).format(v.price || 0);
+      return `<tr>
+        <td>${esc(d)}</td>
+        <td>${esc(profilesMap[v.user_id] || 'Cliente')}</td>
+        <td>${esc(v.service_name)}</td>
+        <td>${esc(price)}</td>
+      </tr>`;
+    }).join('');
+  }
+})();
+</script>
+
+</body>
+</html>
