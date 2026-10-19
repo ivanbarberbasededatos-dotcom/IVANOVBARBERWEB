@@ -428,6 +428,9 @@
         <label for="login-password">Contraseña</label>
         <input id="login-password" type="password" autocomplete="current-password" required placeholder="Tu contraseña">
         <button class="form-submit" type="submit" id="submit-login">Entrar</button>
+        <p style="text-align:center; margin-top:12px; font-size:13px;">
+        <a href="#" id="btn-forgot" style="color:var(--red-dark);">¿Olvidaste tu contraseña?</a>
+        </p>
         <p class="form-msg" id="mensaje-login" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -707,6 +710,23 @@
 
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
+  
+  // ---- RECUPERAR CONTRASEÑA ----
+  document.getElementById('btn-forgot').addEventListener('click', async (e) => {
+    e.preventDefault();
+    const email = prompt('Escribe el correo con el que te registraste:');
+    if (!email) return;
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: 'https://barberlandingpage-five.vercel.app/',
+    });
+
+    if (error) {
+      alert('Error: ' + error.message);
+    } else {
+      alert('¡Listo! Revisa tu correo. Te enviamos un enlace para cambiar tu contraseña.');
+    }
+  });
 })();
 </script>
 
