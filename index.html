@@ -515,7 +515,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (function(){
-  // Config Supabase — la publishable key es PÚBLICA por diseño, OK dejarla aquí.
+  // Config Supabase
   const SUPABASE_URL = 'https://cqptwzrivcehefpgmtyu.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_JaIED6uJ7UriEa35ftzarw_XX8qx5dN';
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -584,10 +584,8 @@
       });
       if (error) throw error;
       if (data.session) {
-        // Auto-login (email confirmation off)
         msgReg.textContent = '';
       } else {
-        // Email confirmation on
         msgReg.textContent = '¡Registro creado! Revisa tu correo para confirmar y luego inicia sesión.';
         msgReg.classList.add('ok');
         formRegistro.reset();
@@ -626,8 +624,21 @@
     await supabase.auth.signOut();
   });
 
-  // Session state
-  supabase.auth.onAuthStateChange((_event, session) => {
+  // Manejo de Sesión y Recuperación de Contraseña (Unificado)
+  supabase.auth.onAuthStateChange((event, session) => {
+    
+    // 1. Detectar si el usuario viene de un correo de recuperación
+    if (event === 'PASSWORD_RECOVERY') {
+      const newPassword = prompt('Escribe tu nueva contraseña (mínimo 8 caracteres):');
+      if (newPassword && newPassword.length >= 8) {
+        supabase.auth.updateUser({ password: newPassword }).then(({ error }) => {
+          if (error) alert('Error: ' + error.message);
+          else alert('¡Contraseña actualizada con éxito! Ya puedes entrar.');
+        });
+      }
+    }
+
+    // 2. Manejar la vista (si hay sesión o no)
     if (session) {
       authPanel.style.display = 'none';
       panelSocio.style.display = 'block';
@@ -711,7 +722,7 @@
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
   
-  // ---- RECUPERAR CONTRASEÑA ----
+  // ---- BOTÓN DE RECUPERAR CONTRASEÑA ----
   document.getElementById('btn-forgot').addEventListener('click', async (e) => {
     e.preventDefault();
     const email = prompt('Escribe el correo con el que te registraste:');
