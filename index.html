@@ -3,10 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IVANOV BARBERSHOP</title>
+<title>IVANOV BARBERSHOP · Barbería en Itagüí · Cortes, barba y cursos</title>
+<meta name="description" content="Barbería en Itagüí (Mall Laureles del Sur). Corte clásico, corte + barba, diseño de barba y afeitada tradicional. Programa de fidelización: cada corte cuenta. Cursos de barbería.">
+<meta name="theme-color" content="#1B1918">
+<link rel="canonical" href="https://barberlandingpage-five.vercel.app/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="IVANOV BARBERSHOP · Cada corte cuenta">
+<meta property="og:description" content="Barbería en Itagüí. Niveles Bronce, Plata y Oro. Cursos de barbería disponibles.">
+<meta property="og:url" content="https://barberlandingpage-five.vercel.app/">
+<meta property="og:image" content="https://barberlandingpage-five.vercel.app/og-image.jpg">
+<meta property="og:locale" content="es_CO">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IVANOV BARBERSHOP">
+<meta name="twitter:description" content="Cada corte cuenta. Barbería en Itagüí.">
+<meta name="twitter:image" content="https://barberlandingpage-five.vercel.app/og-image.jpg">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "IVANOV BARBERSHOP",
+  "url": "https://barberlandingpage-five.vercel.app/",
+  "telephone": "+573014395470",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Mall Laureles del Sur",
+    "addressLocality": "Itagüí",
+    "addressRegion": "Antioquia",
+    "addressCountry": "CO"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "09:00",
+    "closes": "19:00"
+  },
+  "sameAs": ["https://www.instagram.com/barbershopivanov"]
+}
+</script>
+
 <style>
   :root{
     --ink:#1B1918;
@@ -18,210 +65,208 @@
     --brass:#BC8A46;
     --steel:#8A8579;
     --paper-dim:#C9BFA9;
-    --radius-card: 3px;
+    --radius-card:3px;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Archivo',-apple-system,BlinkMacSystemFont,sans-serif;
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2{
-    font-family:'Yeseva One',Georgia,serif;
-    font-weight:400;
-    margin:0;
-  }
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Archivo',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  h1,h2{font-family:'Yeseva One',Georgia,serif;font-weight:400;margin:0;}
   p{margin:0;}
   a{color:inherit;}
   button{font-family:inherit;cursor:pointer;}
   :focus-visible{outline:2px solid var(--brass);outline-offset:3px;}
+  .skip-link{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);padding:12px 20px;z-index:999;text-decoration:none;font-weight:600;}
+  .skip-link:focus{left:12px;top:12px;}
   @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
+    *{animation-duration:0.01ms !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
   }
 
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
-  section{padding:72px 0;}
-  .section-title{font-size:clamp(28px,4vw,42px);margin-bottom:12px;max-width:14ch;}
-  .section-lede{max-width:52ch;color:var(--steel);font-size:16px;margin-bottom:40px;}
+  section{padding:88px 0;}
+  .section-title{font-size:clamp(28px,4vw,42px);margin-bottom:12px;max-width:16ch;}
+  .section-lede{max-width:54ch;color:var(--steel);font-size:16px;margin-bottom:44px;}
   .on-dark .section-lede{color:var(--paper-dim);}
 
   /* NAV */
-  nav{
-    position:sticky;top:0;z-index:50;
-    background:var(--ink);
-    border-bottom:1px solid rgba(234,227,214,0.12);
-  }
-  .nav-row{
-    max-width:1080px;margin:0 auto;padding:16px 24px;
-    display:flex;align-items:center;justify-content:space-between;
-  }
-  .logo{
-    font-family:'Yeseva One',serif;color:var(--paper);
-    font-size:20px;letter-spacing:0.5px;text-decoration:none;
-    position:relative;
-  }
-  .logo span{
-    display:inline-block;
-    border-bottom:3px solid var(--red);
-    padding-bottom:1px;
-  }
+  nav{position:sticky;top:0;z-index:50;background:var(--ink);border-bottom:1px solid rgba(234,227,214,0.12);}
+  .nav-row{max-width:1080px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .logo{font-family:'Yeseva One',serif;color:var(--paper);font-size:20px;letter-spacing:0.5px;text-decoration:none;}
+  .logo span{display:inline-block;border-bottom:3px solid var(--red);padding-bottom:1px;}
   .nav-links{display:none;gap:28px;font-size:14px;font-weight:500;}
   .nav-links a{text-decoration:none;color:var(--paper-dim);transition:color .15s;}
   .nav-links a:hover{color:var(--paper);}
-  .nav-cta{
-    background:var(--red);color:var(--paper);border:none;
-    padding:10px 18px;font-size:14px;font-weight:600;border-radius:var(--radius-card);
-    text-decoration:none;
+  .nav-right{display:flex;align-items:center;gap:12px;}
+  .nav-cta{background:var(--red);color:var(--paper);border:none;padding:10px 18px;font-size:14px;font-weight:600;border-radius:var(--radius-card);text-decoration:none;}
+  .nav-cta:hover{background:var(--red-dark);}
+  .nav-toggle{display:flex;background:transparent;border:1px solid rgba(234,227,214,0.25);color:var(--paper);width:38px;height:38px;align-items:center;justify-content:center;border-radius:var(--radius-card);}
+  .nav-toggle svg{width:18px;height:18px;stroke:var(--paper);}
+  .nav-mobile{display:none;border-top:1px solid rgba(234,227,214,0.12);background:var(--ink);}
+  .nav-mobile.open{display:block;}
+  .nav-mobile a{display:block;padding:14px 24px;color:var(--paper-dim);text-decoration:none;font-size:15px;border-bottom:1px solid rgba(234,227,214,0.08);}
+  .nav-mobile a:hover{color:var(--paper);background:var(--ink-2);}
+  @media(min-width:820px){
+    .nav-links{display:flex;}
+    .nav-toggle{display:none;}
+    .nav-mobile{display:none !important;}
   }
-  @media(min-width:800px){ .nav-links{display:flex;} }
 
   /* HERO */
-  .hero{
-    background:var(--ink);color:var(--paper);
-    padding:88px 0 96px;
-    position:relative;overflow:hidden;
-  }
-  .hero-stripe{
-    position:absolute;top:-40px;right:-60px;width:220px;height:340px;
-    background:repeating-linear-gradient(45deg,var(--red) 0 14px,transparent 14px 28px);
-    opacity:0.9;transform:rotate(8deg);
-  }
+  .hero{background:var(--ink);color:var(--paper);padding:100px 0 108px;position:relative;overflow:hidden;}
+  .hero-stripe{position:absolute;top:-40px;right:-60px;width:220px;height:340px;background:repeating-linear-gradient(45deg,var(--red) 0 14px,transparent 14px 28px);opacity:0.9;transform:rotate(8deg);pointer-events:none;}
   .hero-inner{position:relative;z-index:1;}
-  .hero-eyebrow{
-    color:var(--brass);font-size:14px;font-weight:600;margin-bottom:18px;
-  }
-  .hero h1{
-    font-size:clamp(40px,7vw,68px);
-    line-height:1.05;max-width:12ch;
-    opacity:0;transform:translateY(12px);
-    animation:rise .7s ease-out forwards;
-  }
+  .hero-eyebrow{color:var(--brass);font-size:14px;font-weight:600;margin-bottom:18px;letter-spacing:0.5px;text-transform:uppercase;}
+  .hero h1{font-size:clamp(42px,7vw,72px);line-height:1.03;max-width:13ch;opacity:0;transform:translateY(12px);animation:rise .7s ease-out forwards;}
   @keyframes rise{to{opacity:1;transform:translateY(0);}}
-  .hero p.sub{
-    margin-top:22px;font-size:18px;color:var(--paper-dim);max-width:42ch;
-  }
-  .hero-actions{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;}
-  .btn-primary{
-    background:var(--red);color:var(--paper);border:none;text-decoration:none;
-    padding:15px 26px;font-size:15px;font-weight:600;border-radius:var(--radius-card);
-    display:inline-block;transition:background .15s;
-  }
+  .hero p.sub{margin-top:22px;font-size:18px;color:var(--paper-dim);max-width:46ch;}
+  .hero-actions{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap;}
+  .btn-primary{background:var(--red);color:var(--paper);border:none;text-decoration:none;padding:15px 26px;font-size:15px;font-weight:600;border-radius:var(--radius-card);display:inline-flex;align-items:center;gap:10px;transition:background .15s;}
   .btn-primary:hover{background:var(--red-dark);}
-  .btn-ghost{
-    background:transparent;color:var(--paper);border:1px solid rgba(234,227,214,0.35);
-    padding:15px 26px;font-size:15px;font-weight:600;border-radius:var(--radius-card);
-    text-decoration:none;display:inline-block;
-  }
+  .btn-primary svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;}
+  .btn-ghost{background:transparent;color:var(--paper);border:1px solid rgba(234,227,214,0.35);padding:15px 26px;font-size:15px;font-weight:600;border-radius:var(--radius-card);text-decoration:none;display:inline-block;}
+  .btn-ghost:hover{background:rgba(234,227,214,0.06);}
   .hero-loc{margin-top:44px;font-size:13px;color:var(--steel);}
+
+  /* STATS */
+  .stats{background:var(--ink-2);color:var(--paper);padding:0;}
+  .stats-row{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid rgba(234,227,214,0.12);border-bottom:1px solid rgba(234,227,214,0.12);}
+  @media(min-width:800px){.stats-row{grid-template-columns:repeat(4,1fr);}}
+  .stat{padding:28px 24px;text-align:center;border-right:1px solid rgba(234,227,214,0.08);}
+  .stat:last-child{border-right:none;}
+  .stat-num{font-family:'Yeseva One',serif;font-size:clamp(24px,3vw,34px);color:var(--brass);line-height:1;}
+  .stat-label{font-size:13px;color:var(--paper-dim);margin-top:8px;}
 
   /* SERVICIOS */
   .servicios{background:var(--paper);}
-  .servicio-grid{
-    display:grid;grid-template-columns:1fr;gap:1px;
-    background:var(--paper-2);border:1px solid var(--paper-2);
-  }
-  @media(min-width:640px){ .servicio-grid{grid-template-columns:1fr 1fr;} }
-  .servicio-card{
-    background:var(--paper);padding:26px 24px;
-  }
-  .servicio-card svg{width:26px;height:26px;stroke:var(--red);margin-bottom:14px;}
+  .servicio-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--paper-2);border:1px solid var(--paper-2);}
+  @media(min-width:640px){.servicio-grid{grid-template-columns:1fr 1fr;}}
+  .servicio-card{background:var(--paper);padding:28px 26px;}
+  .servicio-card svg{width:26px;height:26px;stroke:var(--red);fill:none;stroke-width:1.6;margin-bottom:14px;}
   .servicio-card h3{font-family:'Archivo';font-size:17px;font-weight:700;margin:0 0 6px;}
   .servicio-card .price{color:var(--steel);font-size:14px;}
+
+  /* NOSOTROS */
+  .nosotros{background:var(--paper-2);}
+  .nosotros-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center;}
+  @media(min-width:800px){.nosotros-grid{grid-template-columns:1fr 1fr;}}
+  .nosotros h2{margin-bottom:16px;}
+  .nosotros p{font-size:15px;color:var(--ink);margin-bottom:14px;max-width:52ch;}
+  .nosotros strong{color:var(--red-dark);}
+  .photo-frame{background:var(--ink-2);aspect-ratio:4/5;border-radius:var(--radius-card);position:relative;overflow:hidden;}
+  .photo-frame::after{content:"⚠️ REEMPLAZA con foto real (barbero, local o corte)";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--paper-dim);font-size:12px;text-align:center;padding:20px;background:repeating-linear-gradient(45deg,rgba(188,138,70,0.06) 0 10px,transparent 10px 20px);}
+  .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;}
+  .photo-frame:has(img)::after{display:none;}
 
   /* BENEFICIOS */
   .beneficios{background:var(--ink);color:var(--paper);}
   .tier-row{display:grid;grid-template-columns:1fr;gap:16px;}
-  @media(min-width:800px){ .tier-row{grid-template-columns:repeat(3,1fr);} }
-  .tier-card{
-    background:var(--ink-2);padding:28px 24px;border-top:3px solid var(--tier-color,var(--brass));
-  }
-  .tier-num{font-size:13px;color:var(--steel);margin-bottom:10px;}
-  .tier-card h3{font-family:'Yeseva One';font-size:22px;margin-bottom:6px;}
-  .tier-card .req{font-size:13px;color:var(--paper-dim);margin-bottom:14px;}
-  .tier-card .perk{font-size:15px;font-weight:600;color:var(--brass);}
+  @media(min-width:800px){.tier-row{grid-template-columns:repeat(3,1fr);}}
+  .tier-card{background:var(--ink-2);padding:30px 26px;border-top:3px solid var(--tier-color,var(--brass));position:relative;}
+  .tier-num{font-size:12px;color:var(--steel);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px;}
+  .tier-card h3{font-family:'Yeseva One';font-size:24px;margin-bottom:6px;}
+  .tier-card .req{font-size:13px;color:var(--paper-dim);margin-bottom:16px;}
+  .tier-card .perk{font-size:15px;font-weight:600;color:var(--brass);display:flex;align-items:flex-start;gap:8px;}
+  .tier-card .perk::before{content:"✓";color:var(--brass);flex-shrink:0;}
 
-  /* REGISTRO */
+  /* TESTIMONIOS */
+  .testimonios{background:var(--paper);}
+  .testi-row{display:grid;grid-template-columns:1fr;gap:16px;}
+  @media(min-width:800px){.testi-row{grid-template-columns:repeat(3,1fr);}}
+  .testi-card{background:var(--paper-2);padding:28px 26px;border-radius:var(--radius-card);border-left:3px solid var(--red);}
+  .testi-stars{color:var(--brass);font-size:14px;letter-spacing:2px;margin-bottom:12px;}
+  .testi-card p{font-size:15px;line-height:1.6;margin-bottom:16px;color:var(--ink);}
+  .testi-author{font-size:13px;font-weight:700;color:var(--steel);}
+
+  /* REGISTRO / LOGIN */
   .registro{background:var(--paper-2);}
-  .registro-panel{
-    background:var(--paper);border:1px solid rgba(27,25,24,0.12);
-    padding:36px;max-width:560px;border-radius:var(--radius-card);
-  }
+  .auth-panel{background:var(--paper);border:1px solid rgba(27,25,24,0.12);padding:32px;max-width:560px;border-radius:var(--radius-card);}
+  .auth-tabs{display:flex;border-bottom:1px solid rgba(27,25,24,0.15);margin-bottom:24px;}
+  .auth-tab{background:transparent;border:none;padding:12px 20px;font-size:14px;font-weight:600;color:var(--steel);border-bottom:2px solid transparent;margin-bottom:-1px;}
+  .auth-tab.active{color:var(--ink);border-bottom-color:var(--red);}
+  .auth-form{display:none;}
+  .auth-form.active{display:block;}
   label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;margin-top:16px;}
   label:first-of-type{margin-top:0;}
-  input{
-    width:100%;padding:12px 14px;border:1px solid rgba(27,25,24,0.2);
-    border-radius:var(--radius-card);font-size:15px;font-family:inherit;background:var(--paper);
-  }
-  input:focus{border-color:var(--brass);}
-  .form-submit{
-    margin-top:24px;width:100%;background:var(--ink);color:var(--paper);border:none;
-    padding:14px;font-size:15px;font-weight:600;border-radius:var(--radius-card);
-  }
-  .form-submit:hover{background:var(--red);}
+  input[type=text],input[type=email],input[type=password],input[type=tel]{width:100%;padding:12px 14px;border:1px solid rgba(27,25,24,0.2);border-radius:var(--radius-card);font-size:15px;font-family:inherit;background:var(--paper);}
+  input:focus{border-color:var(--brass);outline:none;}
+  .consent{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:13px;color:var(--steel);}
+  .consent input{width:auto;margin-top:3px;}
+  .consent a{color:var(--red-dark);}
+  .form-submit{margin-top:24px;width:100%;background:var(--ink);color:var(--paper);border:none;padding:14px;font-size:15px;font-weight:600;border-radius:var(--radius-card);}
+  .form-submit:hover:not(:disabled){background:var(--red);}
+  .form-submit:disabled{opacity:0.6;cursor:wait;}
+  .form-msg{margin-top:14px;font-size:14px;color:var(--red-dark);min-height:1.2em;}
+  .form-msg.ok{color:#2a7a3a;}
+  .logout-btn{margin-top:20px;background:transparent;border:1px solid rgba(27,25,24,0.25);color:var(--ink);padding:10px 18px;font-size:13px;font-weight:600;border-radius:var(--radius-card);}
+  .logout-btn:hover{border-color:var(--red);color:var(--red);}
 
-  .socio-panel{max-width:560px;}
-  .socio-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
+  /* PANEL SOCIO */
+  .socio-panel{background:var(--paper);border:1px solid rgba(27,25,24,0.12);padding:32px;max-width:560px;border-radius:var(--radius-card);display:none;}
+  .socio-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;gap:12px;flex-wrap:wrap;}
   .socio-head h3{font-family:'Yeseva One';font-size:24px;}
-  .tier-badge{
-    font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px;
-    background:var(--brass);color:var(--ink);
-  }
-  .progress-track{
-    height:10px;background:var(--paper-2);border-radius:6px;overflow:hidden;margin:18px 0 8px;
-  }
-  .progress-fill{
-    height:100%;background:var(--red);width:0%;transition:width .5s ease;
-  }
+  .tier-badge{font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;background:var(--brass);color:var(--ink);white-space:nowrap;}
+  .tier-badge.achieved{background:#2a7a3a;color:#fff;}
+  .progress-track{height:10px;background:var(--paper-2);border-radius:6px;overflow:hidden;margin:18px 0 8px;}
+  .progress-fill{height:100%;background:var(--red);width:0%;transition:width .5s ease;}
   .progress-label{font-size:13px;color:var(--steel);}
-  .sim-btn{
-    margin-top:22px;background:transparent;border:1px dashed var(--steel);color:var(--ink);
-    padding:12px 18px;font-size:14px;font-weight:600;border-radius:var(--radius-card);width:100%;
-  }
-  .sim-btn:hover{border-color:var(--red);color:var(--red);}
-  .sim-note{font-size:12px;color:var(--steel);margin-top:8px;}
-  .unlock-msg{
-    margin-top:16px;padding:12px 14px;background:rgba(188,138,70,0.15);
-    border-left:3px solid var(--brass);font-size:14px;font-weight:600;display:none;
-  }
+  .unlock-msg{margin-top:16px;padding:12px 14px;background:rgba(188,138,70,0.15);border-left:3px solid var(--brass);font-size:14px;font-weight:600;display:none;}
   .unlock-msg.show{display:block;}
+  .visit-history{margin-top:20px;font-size:13px;color:var(--steel);}
+  .visit-history h4{font-size:13px;margin:0 0 8px;color:var(--ink);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
+  .visit-history ul{list-style:none;padding:0;margin:0;}
+  .visit-history li{padding:6px 0;border-bottom:1px solid rgba(27,25,24,0.08);display:flex;justify-content:space-between;}
 
   /* CURSOS */
   .cursos{background:var(--ink);color:var(--paper);}
   .curso-row{display:grid;grid-template-columns:1fr;gap:16px;}
-  @media(min-width:800px){ .curso-row{grid-template-columns:repeat(3,1fr);} }
-  .curso-card{background:var(--ink-2);padding:26px 22px;}
-  .curso-fase{font-size:13px;color:var(--brass);font-weight:600;margin-bottom:10px;}
-  .curso-card h3{font-family:'Yeseva One';font-size:19px;margin-bottom:10px;}
-  .curso-card p{font-size:14px;color:var(--paper-dim);margin-bottom:16px;}
-  .curso-badge{font-size:12px;color:var(--steel);border:1px solid rgba(234,227,214,0.25);display:inline-block;padding:4px 10px;border-radius:20px;}
-  .cursos-note{margin-top:28px;font-size:13px;color:var(--steel);}
+  @media(min-width:800px){.curso-row{grid-template-columns:repeat(3,1fr);}}
+  .curso-card{background:var(--ink-2);padding:28px 24px;display:flex;flex-direction:column;}
+  .curso-fase{font-size:12px;color:var(--brass);font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px;}
+  .curso-card h3{font-family:'Yeseva One';font-size:20px;margin-bottom:10px;line-height:1.2;}
+  .curso-card p{font-size:14px;color:var(--paper-dim);margin-bottom:20px;flex-grow:1;}
+  .curso-card .btn-primary{width:100%;justify-content:center;font-size:14px;padding:12px 18px;}
 
   /* FOOTER */
   footer{background:var(--ink);color:var(--paper-dim);border-top:1px solid rgba(234,227,214,0.12);}
-  .footer-row{display:flex;flex-direction:column;gap:24px;padding:48px 0 28px;}
-  @media(min-width:700px){ .footer-row{flex-direction:row;justify-content:space-between;} }
-  .footer-brand{font-family:'Yeseva One';color:var(--paper);font-size:20px;}
-  .footer-social{display:flex;gap:14px;margin-top:14px;}
-  .footer-social a{width:34px;height:34px;border:1px solid rgba(234,227,214,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;}
-  .footer-social svg{width:16px;height:16px;stroke:var(--paper-dim);}
+  .footer-row{display:grid;grid-template-columns:1fr;gap:32px;padding:56px 0 36px;}
+  @media(min-width:800px){.footer-row{grid-template-columns:1.4fr 1fr 1fr;}}
+  .footer-brand{font-family:'Yeseva One';color:var(--paper);font-size:20px;margin-bottom:12px;}
+  .footer-col h4{font-family:'Archivo';font-size:13px;text-transform:uppercase;letter-spacing:0.5px;color:var(--paper);margin:0 0 14px;font-weight:700;}
+  .footer-col p,.footer-col a{font-size:14px;color:var(--paper-dim);text-decoration:none;display:block;margin-bottom:8px;line-height:1.5;}
+  .footer-col a:hover{color:var(--paper);}
+  .footer-social{display:flex;gap:12px;margin-top:16px;}
+  .footer-social a{width:36px;height:36px;border:1px solid rgba(234,227,214,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;}
+  .footer-social svg{width:16px;height:16px;stroke:var(--paper-dim);fill:none;stroke-width:1.6;}
+  .footer-social a:hover{border-color:var(--brass);}
+  .footer-social a:hover svg{stroke:var(--brass);}
   .footer-fine{font-size:12px;color:var(--steel);padding-bottom:28px;border-top:1px solid rgba(234,227,214,0.08);padding-top:20px;}
 </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Saltar al contenido</a>
 
 <nav>
   <div class="nav-row">
     <a class="logo" href="#top"><span>IVANOV</span> BARBERSHOP</a>
     <div class="nav-links">
       <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Nosotros</a>
       <a href="#beneficios">Beneficios</a>
-      <a href="#cursos">El Barbero Soy Yo</a>
+      <a href="#cursos">Cursos</a>
     </div>
-    <a class="nav-cta" href="#registro">Regístrate</a>
+    <div class="nav-right">
+      <a class="nav-cta" href="#registro">Regístrate</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-mobile">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="#servicios">Servicios</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#beneficios">Beneficios</a>
+    <a href="#cursos">Cursos</a>
+    <a href="#registro">Regístrate</a>
   </div>
 </nav>
 
@@ -232,38 +277,68 @@
     <h1>Cada corte cuenta.</h1>
     <p class="sub">Regístrate una vez y cada visita te acerca a un beneficio real: descuentos, servicios gratis y acceso a nuestros cursos de barbería.</p>
     <div class="hero-actions">
-      <a class="btn-primary" href="#registro">Empezar a sumar</a>
-      <a class="btn-ghost" href="#servicios">Ver servicios</a>
+      <a class="btn-primary" href="https://wa.me/573014395470?text=Hola%2C%20quiero%20agendar%20una%20cita%20en%20IVANOV" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A7.9 7.9 0 1 1 8.9 19L4 20z"/></svg>
+        Agendar por WhatsApp
+      </a>
+      <a class="btn-ghost" href="#registro">Sumar mis cortes</a>
     </div>
     <p class="hero-loc">Mall Laureles del Sur, Itagüí · Lun–Sáb, 9am–7pm</p>
   </div>
 </header>
 
+<section class="stats" aria-label="Datos de la barbería">
+  <div class="wrap">
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">+5</div><div class="stat-label">Años de oficio</div></div>
+      <div class="stat"><div class="stat-num">+2.000</div><div class="stat-label">Cortes hechos</div></div>
+      <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Google Maps</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Niveles de cliente</div></div>
+    </div>
+  </div>
+</section>
+
+<main id="main">
+
 <section class="servicios" id="servicios">
   <div class="wrap">
     <h2 class="section-title">Servicios</h2>
-    <p class="section-lede">Precios de ejemplo — se ajustan a la lista real del negocio.</p>
+    <p class="section-lede">Sin sorpresas: lo que ves es lo que pagas.</p>
     <div class="servicio-grid">
       <div class="servicio-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M20 4L8.5 15.5M8.5 8.5L20 20"/></svg>
+        <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M20 4L8.5 15.5M8.5 8.5L20 20"/></svg>
         <h3>Corte clásico</h3>
         <p class="price">$35.000 COP · 30 min</p>
       </div>
       <div class="servicio-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 12h16M4 7h16M4 17h10"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M4 12h16M4 7h16M4 17h10"/></svg>
         <h3>Corte + barba</h3>
         <p class="price">$50.000 COP · 50 min</p>
       </div>
       <div class="servicio-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M5 4l14 8-14 8V4z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M5 4l14 8-14 8V4z"/></svg>
         <h3>Diseño de barba</h3>
         <p class="price">$25.000 COP · 25 min</p>
       </div>
       <div class="servicio-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 10h16"/></svg>
+        <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 10h16"/></svg>
         <h3>Afeitada tradicional</h3>
         <p class="price">$30.000 COP · 35 min</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="nosotros" id="nosotros">
+  <div class="wrap nosotros-grid">
+    <div class="photo-frame" aria-hidden="true">
+      <!-- ⚠️ REEMPLAZA por foto real: <img src="/nosotros.jpg" alt="Barbero de IVANOV en acción" loading="lazy"> -->
+    </div>
+    <div>
+      <h2 class="section-title">Nosotros</h2>
+      <p><strong>IVANOV BARBERSHOP</strong> nació con una idea simple: que cada cliente salga sintiéndose mejor de lo que entró. Sin prisas, sin improvisar.</p>
+      <p>Trabajamos en el <strong>Mall Laureles del Sur, Itagüí</strong>, de lunes a sábado. Nuestro equipo combina técnica clásica con tendencias actuales — y por eso muchos de nuestros clientes llevan años sentados en la misma silla.</p>
+      <p>Además de atenderte, enseñamos el oficio. Si te interesa aprender a cortar o a manejar tu propia barbería, revisa la sección de cursos.</p>
     </div>
   </div>
 </section>
@@ -295,34 +370,81 @@
   </div>
 </section>
 
+<section class="testimonios" aria-label="Testimonios">
+  <div class="wrap">
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    <p class="section-lede"><!-- ⚠️ REEMPLAZA con reseñas reales de Google Maps (nombre + texto) --></p>
+    <div class="testi-row">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Llevo más de un año viniendo y siempre salgo igual de contento. Buen ambiente y el corte queda perfecto."</p>
+        <div class="testi-author">Andrés M.</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Pedí asesoría para cambiar de estilo y me dejaron exactamente lo que quería. Recomendado."</p>
+        <div class="testi-author">Juan P.</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"El sistema de cortes acumulados es un detalle buenísimo. Ya voy por el nivel Plata."</p>
+        <div class="testi-author">Camilo R.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="registro" id="registro">
   <div class="wrap">
     <h2 class="section-title">Regístrate</h2>
-    <p class="section-lede">Así vive el cliente el registro y el seguimiento de sus cortes.</p>
+    <p class="section-lede">Crea tu cuenta una vez y sigue tu progreso. Cada corte que te tomemos suma automáticamente.</p>
 
-    <form class="registro-panel" id="form-registro">
-      <label for="nombre">Nombre</label>
-      <input id="nombre" type="text" autocomplete="name" required placeholder="Tu nombre">
-      <label for="email">Correo electrónico</label>
-      <input id="email" type="email" autocomplete="email" required placeholder="tucorreo@ejemplo.com">
-      <label for="password">Contraseña</label>
-      <input id="password" type="password" autocomplete="new-password" minlength="6" required placeholder="Mínimo 6 caracteres">
-      <label for="whatsapp">WhatsApp</label>
-      <input id="whatsapp" type="tel" autocomplete="tel" required placeholder="300 000 0000">
-      <p id="mensaje-registro" role="status" aria-live="polite" style="margin-top:14px;font-size:14px;"></p>
-      <button class="form-submit" id="submit-registro" type="submit">Crear mi cuenta</button>
-    </form>
+    <div class="auth-panel" id="auth-panel">
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="tab-register" role="tab" aria-selected="true" aria-controls="form-registro">Registrarme</button>
+        <button class="auth-tab" id="tab-login" role="tab" aria-selected="false" aria-controls="form-login">Ya tengo cuenta</button>
+      </div>
 
-    <div class="registro-panel socio-panel" id="panel-socio" style="display:none;">
+      <form class="auth-form active" id="form-registro">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" autocomplete="name" required placeholder="Tu nombre">
+        <label for="email">Correo electrónico</label>
+        <input id="email" type="email" autocomplete="email" required placeholder="tucorreo@ejemplo.com">
+        <label for="password">Contraseña</label>
+        <input id="password" type="password" autocomplete="new-password" minlength="8" required placeholder="Mínimo 8 caracteres">
+        <label for="whatsapp">WhatsApp</label>
+        <input id="whatsapp" type="tel" autocomplete="tel" required placeholder="300 000 0000" pattern="[0-9+\s\-]{7,15}">
+        <div class="consent">
+          <input type="checkbox" id="consent" required>
+          <label for="consent" style="margin:0;font-weight:400;font-size:13px;">Acepto la <a href="#" id="privacy-link">política de tratamiento de datos</a> (Ley 1581 de 2012).</label>
+        </div>
+        <button class="form-submit" type="submit" id="submit-registro">Crear mi cuenta</button>
+        <p class="form-msg" id="mensaje-registro" role="status" aria-live="polite"></p>
+      </form>
+
+      <form class="auth-form" id="form-login">
+        <label for="login-email">Correo electrónico</label>
+        <input id="login-email" type="email" autocomplete="email" required placeholder="tucorreo@ejemplo.com">
+        <label for="login-password">Contraseña</label>
+        <input id="login-password" type="password" autocomplete="current-password" required placeholder="Tu contraseña">
+        <button class="form-submit" type="submit" id="submit-login">Entrar</button>
+        <p class="form-msg" id="mensaje-login" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <div class="socio-panel" id="panel-socio">
       <div class="socio-head">
-        <h3 id="socio-nombre">Bienvenido</h3>
+        <h3 id="socio-nombre">Hola</h3>
         <span class="tier-badge" id="socio-tier">Bronce</span>
       </div>
-      <p class="progress-label" id="socio-progreso">0 de 3 cortes hacia tu 10%</p>
+      <p class="progress-label" id="socio-progreso">Cargando…</p>
       <div class="progress-track"><div class="progress-fill" id="socio-barra"></div></div>
       <div class="unlock-msg" id="socio-unlock"></div>
-      <button class="sim-btn" id="btn-simular">Simular corte registrado</button>
-      <p class="sim-note">En producción, este registro lo haría el barbero desde el mostrador al cerrar cada cita — aquí es un botón para que veas el efecto en vivo.</p>
+      <div class="visit-history" id="socio-historial" style="display:none;">
+        <h4>Últimas visitas</h4>
+        <ul id="socio-historial-lista"></ul>
+      </div>
+      <button class="logout-btn" id="btn-logout">Cerrar sesión</button>
     </div>
   </div>
 </section>
@@ -336,143 +458,255 @@
         <p class="curso-fase">Fase 1</p>
         <h3>Fundamentos del oficio</h3>
         <p>Herramientas, higiene, postura y las bases de un corte bien hecho.</p>
-        <span class="curso-badge">Disponible en Hotmart</span>
+        <a class="btn-primary" href="#" target="_blank" rel="noopener">Ver en Hotmart →</a> <!-- ⚠️ REEMPLAZA href -->
       </div>
       <div class="curso-card">
         <p class="curso-fase">Fase 2</p>
         <h3>Técnicas de corte y diseño</h3>
         <p>Degradados, líneas y diseño de barba con acabado profesional.</p>
-        <span class="curso-badge">Disponible en Hotmart</span>
+        <a class="btn-primary" href="#" target="_blank" rel="noopener">Ver en Hotmart →</a> <!-- ⚠️ REEMPLAZA href -->
       </div>
       <div class="curso-card">
         <p class="curso-fase">Fase 3</p>
         <h3>La barbería como negocio</h3>
         <p>Cómo montar tu silla, fidelizar clientes y crecer con tu propio nombre.</p>
-        <span class="curso-badge">Disponible en Hotmart</span>
+        <a class="btn-primary" href="#" target="_blank" rel="noopener">Ver en Hotmart →</a> <!-- ⚠️ REEMPLAZA href -->
       </div>
     </div>
-    <p class="cursos-note">Esta sección enlaza directamente a la escuela en Hotmart — el clic lleva al checkout del curso correspondiente.</p>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="wrap footer-row">
     <div>
       <p class="footer-brand">IVANOV BARBERSHOP</p>
-      <p style="margin-top:8px;font-size:14px;">Mall laureles del sur, Itagüí</p>
+      <p style="font-size:14px;">Mall Laureles del Sur, Itagüí<br>Antioquia, Colombia</p>
       <div class="footer-social">
-        <a href="https://www.instagram.com/barbershopivanov?obrf=cDN1b251c2JjOXV3" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
-        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M15 3v11a4 4 0 1 1-4-4"/><path d="M15 3a5 5 0 0 0 5 5"/></svg></a>
-        <a href="https://wa.me/573014395470" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 20l1.3-3.9A7.9 7.9 0 1 1 8.9 19L4 20z"/></svg></a>
+        <a href="https://www.instagram.com/barbershopivanov" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a href="https://wa.me/573014395470" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A7.9 7.9 0 1 1 8.9 19L4 20z"/></svg>
+        </a>
       </div>
     </div>
-    <div>
-      <a class="btn-ghost" href="https://wa.me/573014395470" target="_blank" rel="noopener noreferrer" style="border-color:rgba(234,227,214,.35)">Escríbenos por WhatsApp</a>
+    <div class="footer-col">
+      <h4>Horario</h4>
+      <p>Lunes a sábado<br>9:00 am – 7:00 pm</p>
+      <p>Domingos: cerrado</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <a href="tel:+573014395470">+57 301 439 5470</a>
+      <a href="mailto:ivanbarberbasededatos@gmail.com">ivanbarberbasededatos@gmail.com</a>
+      <a href="https://wa.me/573014395470?text=Hola%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener">Agendar cita →</a>
     </div>
   </div>
-  <div class="wrap footer-fine">Demo ilustrativo — diseño y contenido de ejemplo para revisión con el dueño de la barbería.</div>
+  <div class="wrap footer-fine">
+    © <span id="year"></span> IVANOV BARBERSHOP · Todos los derechos reservados
+  </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (function(){
-  // 1. Reemplaza estos dos valores por los de Supabase: Project URL y anon/public key.
-  // Nunca pongas aquí la service_role key.
+  // Config Supabase — la publishable key es PÚBLICA por diseño, OK dejarla aquí.
   const SUPABASE_URL = 'https://cqptwzrivcehefpgmtyu.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_JaIED6uJ7UriEa35ftzarw_XX8qx5dN';
-  const configListo = SUPABASE_URL.startsWith('https://') &&
-    !SUPABASE_URL.includes('PEGA_AQUI') && !SUPABASE_ANON_KEY.includes('PEGA_AQUI');
-  const supabase = configListo
-    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-    : null;
-
-  const form = document.getElementById('form-registro');
-  const panelSocio = document.getElementById('panel-socio');
-  const nombreEl = document.getElementById('socio-nombre');
-  const tierEl = document.getElementById('socio-tier');
-  const progresoEl = document.getElementById('socio-progreso');
-  const barraEl = document.getElementById('socio-barra');
-  const unlockEl = document.getElementById('socio-unlock');
-  const simBtn = document.getElementById('btn-simular');
-  const mensaje = document.getElementById('mensaje-registro');
-  const submitBtn = document.getElementById('submit-registro');
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   const TIERS = [
-    {name:'Bronce', need:3, perk:'10% en tu próximo corte'},
-    {name:'Plata', need:6, perk:'20% o producto de cortesía'},
-    {name:'Oro', need:10, perk:'Corte gratis o servicio premium'}
+    { name:'Bronce', need:3,  perk:'10% en tu próximo corte' },
+    { name:'Plata',  need:6,  perk:'20% o producto de cortesía' },
+    { name:'Oro',    need:10, perk:'Corte gratis o servicio premium' }
   ];
-  let socio = null;
 
-  function tierForVisits(visits){
-    if(visits < TIERS[0].need) return {index:0, ...TIERS[0]};
-    if(visits < TIERS[1].need) return {index:1, ...TIERS[1]};
-    if(visits < TIERS[2].need) return {index:2, ...TIERS[2]};
-    return {index:2, ...TIERS[2], maxed:true};
-  }
-  function render(){
-    const t = tierForVisits(socio.visits);
-    const prevNeed = t.index === 0 ? 0 : TIERS[t.index-1].need;
-    const span = t.need - prevNeed;
-    const into = socio.visits - prevNeed;
-    const pct = t.maxed ? 100 : Math.max(0, Math.min(100, (into/span)*100));
-    nombreEl.textContent = 'Hola, ' + (socio.nombre || 'cliente').split(' ')[0];
-    tierEl.textContent = t.maxed ? 'Oro' : ['Bronce','Plata','Oro'][t.index];
-    barraEl.style.width = pct + '%';
-    progresoEl.textContent = t.maxed ? socio.visits + ' cortes · nivel máximo alcanzado' : socio.visits + ' de ' + t.need + ' cortes hacia ' + t.perk.toLowerCase();
-    if(socio.justUnlocked){ unlockEl.textContent = '🎉 ¡Desbloqueaste: ' + socio.justUnlocked + '!'; unlockEl.classList.add('show'); }
-    else { unlockEl.classList.remove('show'); }
+  const authPanel = document.getElementById('auth-panel');
+  const panelSocio = document.getElementById('panel-socio');
+  const formRegistro = document.getElementById('form-registro');
+  const formLogin = document.getElementById('form-login');
+  const tabRegistro = document.getElementById('tab-register');
+  const tabLogin = document.getElementById('tab-login');
+  const msgReg = document.getElementById('mensaje-registro');
+  const msgLogin = document.getElementById('mensaje-login');
+  const submitReg = document.getElementById('submit-registro');
+  const submitLogin = document.getElementById('submit-login');
+
+  // Nav mobile
+  document.getElementById('nav-toggle').addEventListener('click', function(){
+    const open = document.getElementById('nav-mobile').classList.toggle('open');
+    this.setAttribute('aria-expanded', open);
+    this.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  });
+  document.querySelectorAll('#nav-mobile a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('nav-mobile').classList.remove('open');
+      document.getElementById('nav-toggle').setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Tabs
+  tabRegistro.addEventListener('click', () => switchTab('register'));
+  tabLogin.addEventListener('click', () => switchTab('login'));
+  function switchTab(which){
+    const isReg = which === 'register';
+    tabRegistro.classList.toggle('active', isReg);
+    tabLogin.classList.toggle('active', !isReg);
+    tabRegistro.setAttribute('aria-selected', isReg);
+    tabLogin.setAttribute('aria-selected', !isReg);
+    formRegistro.classList.toggle('active', isReg);
+    formLogin.classList.toggle('active', !isReg);
+    msgReg.textContent = '';
+    msgLogin.textContent = '';
   }
 
-  form.addEventListener('submit', async function(e){
+  // Signup
+  formRegistro.addEventListener('submit', async (e) => {
     e.preventDefault();
-    mensaje.textContent = '';
-    if(!supabase){
-      mensaje.textContent = 'Falta configurar SUPABASE_URL y SUPABASE_ANON_KEY en el código antes de publicar.';
-      return;
-    }
+    msgReg.textContent = '';
+    msgReg.classList.remove('ok');
     const nombre = document.getElementById('nombre').value.trim();
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     const whatsapp = document.getElementById('whatsapp').value.trim();
-    if(!nombre || !email || !password || !whatsapp) return;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Creando cuenta…';
-    try{
-      const {data, error} = await supabase.auth.signUp({
-        email,
-        password,
+    if (!nombre || !email || !password || !whatsapp) return;
+    submitReg.disabled = true;
+    submitReg.textContent = 'Creando cuenta…';
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email, password,
         options: { data: { nombre, whatsapp } }
       });
-      if(error) throw error;
-      socio = {nombre, whatsapp, email, visits:0, justUnlocked:null};
-      panelSocio.style.display = 'block';
-      form.style.display = 'none';
-      render();
-      mensaje.textContent = '';
-      if(data.user && !data.session){
-        const aviso = document.createElement('p');
-        aviso.style.cssText = 'margin-top:12px;font-size:14px;';
-        aviso.textContent = '¡Registro creado! Revisa tu correo para confirmar la cuenta antes de iniciar sesión.';
-        panelSocio.appendChild(aviso);
+      if (error) throw error;
+      if (data.session) {
+        // Auto-login (email confirmation off)
+        msgReg.textContent = '';
+      } else {
+        // Email confirmation on
+        msgReg.textContent = '¡Registro creado! Revisa tu correo para confirmar y luego inicia sesión.';
+        msgReg.classList.add('ok');
+        formRegistro.reset();
       }
-    }catch(err){
-      mensaje.textContent = err.message || 'No fue posible crear la cuenta. Intenta nuevamente.';
-    }finally{
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Crear mi cuenta';
+    } catch (err) {
+      msgReg.textContent = traducirError(err.message);
+    } finally {
+      submitReg.disabled = false;
+      submitReg.textContent = 'Crear mi cuenta';
     }
   });
 
-  // Este botón es solo una demostración visual; no guarda ni suma visitas reales en la base de datos.
-  simBtn.addEventListener('click', function(){
-    if(!socio) return;
-    const before = tierForVisits(socio.visits);
-    socio.visits += 1;
-    const after = tierForVisits(socio.visits);
-    socio.justUnlocked = (after.index > before.index || (after.maxed && !before.maxed)) ? after.perk : null;
-    render();
+  // Login
+  formLogin.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msgLogin.textContent = '';
+    msgLogin.classList.remove('ok');
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+    submitLogin.disabled = true;
+    submitLogin.textContent = 'Entrando…';
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      formLogin.reset();
+    } catch (err) {
+      msgLogin.textContent = traducirError(err.message);
+    } finally {
+      submitLogin.disabled = false;
+      submitLogin.textContent = 'Entrar';
+    }
   });
+
+  // Logout
+  document.getElementById('btn-logout').addEventListener('click', async () => {
+    await supabase.auth.signOut();
+  });
+
+  // Session state
+  supabase.auth.onAuthStateChange((_event, session) => {
+    if (session) {
+      authPanel.style.display = 'none';
+      panelSocio.style.display = 'block';
+      loadSocio(session.user.id);
+    } else {
+      authPanel.style.display = 'block';
+      panelSocio.style.display = 'none';
+    }
+  });
+
+  async function loadSocio(userId){
+    try {
+      const [profileRes, visitsRes] = await Promise.all([
+        supabase.from('profiles').select('full_name').eq('id', userId).maybeSingle(),
+        supabase.from('visits').select('id, service_name, visited_at').eq('user_id', userId).order('visited_at', { ascending:false })
+      ]);
+      const nombre = profileRes.data?.full_name || 'cliente';
+      const visits = visitsRes.data || [];
+      renderSocio(nombre, visits.length, visits);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  function computeProgress(visits){
+    if (visits >= 10) return { tier:'Oro', achieved:true, pct:100, label: visits + ' cortes · nivel máximo alcanzado 🎉', nextTier:null };
+    const nextIdx = TIERS.findIndex(t => visits < t.need);
+    const next = TIERS[nextIdx];
+    const prevNeed = nextIdx === 0 ? 0 : TIERS[nextIdx - 1].need;
+    const achievedTier = nextIdx === 0 ? null : TIERS[nextIdx - 1].name;
+    const pct = ((visits - prevNeed) / (next.need - prevNeed)) * 100;
+    return {
+      tier: achievedTier || TIERS[0].name,
+      achieved: !!achievedTier,
+      pct: Math.max(0, Math.min(100, pct)),
+      label: visits + ' de ' + next.need + ' cortes hacia ' + next.name,
+      nextTier: next
+    };
+  }
+
+  function renderSocio(nombre, totalVisits, visits){
+    const p = computeProgress(totalVisits);
+    document.getElementById('socio-nombre').textContent = 'Hola, ' + nombre.split(' ')[0];
+    const tierEl = document.getElementById('socio-tier');
+    tierEl.textContent = p.tier;
+    tierEl.classList.toggle('achieved', p.achieved || totalVisits >= 10);
+    document.getElementById('socio-progreso').textContent = p.label;
+    document.getElementById('socio-barra').style.width = p.pct + '%';
+    const unlock = document.getElementById('socio-unlock');
+    if (p.achieved || totalVisits >= 10) {
+      unlock.textContent = '🎉 ¡Desbloqueaste ' + p.tier + '!';
+      unlock.classList.add('show');
+    } else {
+      unlock.classList.remove('show');
+    }
+    const histWrap = document.getElementById('socio-historial');
+    const histList = document.getElementById('socio-historial-lista');
+    if (visits.length) {
+      histWrap.style.display = 'block';
+      histList.innerHTML = visits.slice(0, 5).map(v => {
+        const d = new Date(v.visited_at).toLocaleDateString('es-CO', { day:'2-digit', month:'short', year:'numeric' });
+        return '<li><span>' + escapeHtml(v.service_name) + '</span><span>' + d + '</span></li>';
+      }).join('');
+    } else {
+      histWrap.style.display = 'none';
+    }
+  }
+
+  function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  function traducirError(msg){
+    if (!msg) return 'Ocurrió un error. Intenta de nuevo.';
+    if (msg.includes('Invalid login')) return 'Correo o contraseña incorrectos.';
+    if (msg.includes('already registered')) return 'Ese correo ya está registrado. Inicia sesión.';
+    if (msg.includes('Password should be')) return 'La contraseña es muy corta (mínimo 8 caracteres).';
+    if (msg.includes('Email not confirmed')) return 'Debes confirmar tu correo antes de entrar.';
+    if (msg.includes('rate limit')) return 'Demasiados intentos. Espera un momento.';
+    return msg;
+  }
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
 })();
 </script>
 
